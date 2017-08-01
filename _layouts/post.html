@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+{% include head.html %}
+
+<body>
+
+    {% include header.html %} 
+    
+		<section id="banner" class="style1">
+			<div class="inner">
+                <span class="image">
+                    <img src="{{ site.baseurl }}/{{ page.image }}" alt="">
+                </span>
+                <header class="major">
+                    <h1>{{ page.title }}</h1>
+                </header>
+				<div class="content">
+					{% if page.files %} 
+			 			<ul class="actions">
+							{% for file in page.files %} 
+								{% if file.browser %}
+									<li><a href="{{ site.baseurl }}/{{ file.url }}" class="button">{{file.name}}</a></li>
+								{% else %}
+									<li><a href="{{ site.baseurl }}/{{ file.url }}" class="button icon fa-download">{{file.name}}</a></li>
+								{% endif %}
+							{% endfor %} 
+						</ul> 
+					{% endif %}
+				</div>
+            </div>
+        </section>
+
+<!-- Main -->
+<div id="main">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<!-- {% if page.image %}<span class="image main"><img src="{{ site.baseurl }}/{{ page.image }}" alt="" /></span>{% endif %} -->
+
+			{% if page.controls %}
+				<div class="table-wrapper">
+					<table>
+						<thead>
+							<tr>
+								<th>Controls</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for control in page.controls %}
+							<tr>
+								<td>{{ control.key }}</td>
+								<td>{{ control.description }}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+	
+					<hr />
+				</div>
+			{% endif %}
+
+		{{ content }}
+
+	</div>
+</section>
+
+
+</div>
+
+    {% include footer.html %}
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+{% include head.html %}
+
+<body>
+
+    {% include header.html %} 
+    
+	{% for post in site.posts %}
+
+<!-- Main -->
+<div id="main">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<!-- {% if post.image %}<span class="image main"><img src="{{ site.baseurl }}/{{ post.image }}" alt="" /></span>{% endif %} -->
+
+			<header class="major">
+                    <h1>{{ post.title }}</h1>
+                </header>
+				<div class="content">
+					{% if post.files %} 
+			 			<ul class="actions">
+							{% for file in post.files %} 
+								<li><a href="{{ site.baseurl }}/{{ file.url }}" class="button icon fa-download">{{file.name}}</a></li>
+							{% endfor %} 
+						</ul> 
+					{% endif %}
+				</div>
+
+			{% if post.controls %}
+				<div class="table-wrapper">
+					<table>
+						<thead>
+							<tr>
+								<th>Controls</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for control in post.controls %}
+							<tr>
+								<td>{{ control.key }}</td>
+								<td>{{ control.description }}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			{% endif %}
+
+		{{ post.content }}
+	</div>
+</section>
+
+</div>
+
+{% endfor %}
+
+    {% include footer.html %}
+
+</body>
+
+</html>
